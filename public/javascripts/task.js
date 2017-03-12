@@ -276,7 +276,7 @@ function MillisecondToDate(msd) {
                               var $id = $(this).parents('tr').find("td:eq(0)").text();
 
                                         swal({
-                                         title: "Determined to run the task?",
+                                         title: "Rerun the task?",
                                           text: "Rerun "+$id+" \nMay be coming to an end the running status, whether or not to continue",
                                            type: "warning",
                                              confirmButtonColor: "#DD6B55",

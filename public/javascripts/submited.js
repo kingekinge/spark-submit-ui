@@ -66,7 +66,7 @@
                                         //$("#jarForm").submit();
                                              var $mode = $("#masters").find("option:selected").val();
                                             swal({
-                                            title: "submit the jar?",
+                                            title: "Submit the jar?",
                                             text: "The current submit mode "+$mode,
                                             type: "info",
                                             confirmButtonText: "confirm",
