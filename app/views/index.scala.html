@@ -1,0 +1,539 @@
+@(rpcInfo: RPCInfo,
+dfsInfo:DFSInfo,
+memInfo: MEMInfo,
+time:String
+)
+
+
+@sidebar = {
+<div class="sidebar-menu toggle-others collapsed">
+    <div class="sidebar-menu-inner">
+        <header class="logo-env">
+            <!-- logo -->
+            <div class="logo">
+                <a href="@routes.Application.index" class="logo-expanded">
+                </a>
+                <a href="@routes.Application.index" class="logo-collapsed">
+                </a>
+            </div>
+            <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+            <div class="mobile-menu-toggle visible-xs">
+                <a href="#" data-toggle="user-info-menu">
+                    <i class="fa-bell-o"></i>
+                    <span class="badge badge-success">7</span>
+                </a>
+                <a href="#" data-toggle="mobile-menu">
+                    <i class="fa-bars"></i>
+                </a>
+            </div>
+
+            <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+            <div class="settings-icon">
+                <a href="#" data-toggle="settings-pane" data-animate="true">
+                    <i class="fa fa-cog fa-4x"></i>
+                </a>
+            </div>
+
+        </header>
+
+
+        <ul id="main-menu" class="main-menu">
+            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+            <li class="active">
+                <a href="@routes.Application.index">
+                    <i class="fa fa-dashboard fa-fw"></i>
+                    <span class="title">仪表盘</span>
+                </a>
+            </li>
+                    <li>
+                        <a href="@routes.SparkJar.executejarpage">
+                            <i class="fa fa-graduation-cap"></i>
+                            <span class="title">SPARK-JAR应用</span>
+                        </a>
+                    </li>
+
+            <li>
+                <a href="#">
+                    <i class="fa fa-table"></i>
+                    <span class="title">APP数据</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="@routes.YarnList.yarnlist">
+                            <span class="title">Yarn数据列表</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@routes.SparkList.sparklist">
+                            <span class="title">Spark数据列表</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+}
+
+@main("Neptun Dashboard")(sidebar) {
+
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/sweetalert.css")" type="text/css"/>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/google.css")" type="text/css"/>
+
+<script src="@routes.Assets.at("javascripts/globalize.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/dx.chartjs.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/sweetalert.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/index-ui.js")" type="text/javascript"></script>
+
+<div class="row">
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter">
+            <div class="xe-icon">
+                <i class="fa fa-train fa-2x"></i>
+            </div>
+            <div class="xe-label">
+                <strong class="num" id="run">0</strong>
+                <span>running</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter xe-counter-blue">
+            <div class="xe-icon">
+                <i class="fa fa-check fa-2x"></i>
+            </div>
+            <div class="xe-label">
+                <strong class="num" id="succ">0</strong>
+                <span>success</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter xe-counter-info">
+            <div class="xe-icon">
+                <i class="fa-times fa-2x"></i>
+            </div>
+            <div class="xe-label">
+                <strong class="num" id="fail">0</strong>
+                <span>failed</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter xe-counter-red">
+            <div class="xe-icon">
+                <i class="fa fa-plane fa-2x"></i>
+            </div>
+            <div class="xe-label">
+                <strong class="num" id="plain">0</strong>
+                <span>wait</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter-block" >
+            <div class="xe-upper">
+
+                <div class="xe-icon">
+                    <i class="fa fa-heartbeat fa-2x"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num" id="alive_workers"></strong>
+                    <span>Alive Worker</span>
+                </div>
+
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Total Nodes</span>
+                <strong >0</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter-block xe-counter-block-purple" >
+            <div class="xe-upper">
+
+                <div class="xe-icon">
+                    <i class="fa fa-puzzle-piece fa-2x"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num" id="used_c">0</strong>
+                    <span>Used Cores</span>
+                </div>
+
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Total Cores</span>
+                <strong id="total_c">0</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter-block xe-counter-block-red" >
+            <div class="xe-upper">
+
+                <div class="xe-icon">
+                    <i class="fa fa-building fa-2x"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num" id="used_m">0</strong>
+                    <span>Spark Mem</span>
+                </div>
+
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Total Mem</span>
+                <strong id="total_m">0</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter-block xe-counter-block-pink" >
+            <div class="xe-upper">
+
+                <div class="xe-icon">
+                    <i class="fa fa-info fa-2x"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num" id="driver_run">0</strong>
+                    <span>Drivers Running</span>
+                </div>
+
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+                <span>Drivers Completed</span>
+                <strong id="driver_all">0</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+
+    <div class="panel panel-body">
+
+        <div class="row">
+
+
+            <div class="col-sm-20">
+                <div style="height: 440px ; margin: 0;">
+
+                    <div id="container1" style="margin:12px;
+                        display:-moz-inline-box;
+                        display:inline-block;
+                        width:30%;  height:350px;"
+                                        ></div>
+
+                    <div id="container2" style="margin:12px;
+                    display:-moz-inline-box;
+                    display:inline-block;
+                    width:30%;  height:350px;"></div>
+
+                    <div id="container3" style="margin:12px;
+                        display:-moz-inline-box;
+                        display:inline-block;
+                        width:30%;  height:350px;"></div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@* <script>
+    $(document).ready(function () {
+    var data=[
+    {role:"Spark",
+    nums:6
+    },
+    {role:"Hadoop",
+    nums:5
+    },
+    {role:"Hbase",
+    nums:3
+    },
+    {role:"Hive",
+    nums:1
+    },
+    {roles:"Mysql",
+    num:1
+    }
+    ];
+
+    $("#chart_container").dxPieChart({
+    dataSource: data,
+    series: [
+    {
+    argumentField: "role",
+    valueField: "nums",
+    label: {
+    visible: true,
+    connector: {
+    visible: true,
+    width: 1,
+    verticalAlignment:"bottom"
+    },
+    }
+    }
+    ],
+    title: "Area of Countries",
+    onPointClick: function (e) {
+    var point = e.target;
+
+    toggleVisibility(point);
+    },
+    onLegendClick: function (e) {
+    var arg = e.target;
+
+    toggleVisibility(this.getAllSeries()[0].getPointsByArg(arg)[0]);
+    }
+    });
+
+    function toggleVisibility(item) {
+    item.isVisible() ? item.hide() : item.show();
+    }
+
+    });
+    </script>*@
+
+
+<script>
+
+            $(function () {
+                $('#container1').highcharts({
+                    global:{
+                            useUTC:false
+                        },
+                        credits:{
+                            enabled:false
+                        },
+                    chart: {
+                        type: 'area'
+                    },
+                    title: {
+                        text: 'HDFS Summary'
+                    },
+                    subtitle: {
+                        text: 'data capacity used  summary'
+                    },
+                    xAxis: {
+                             type: 'datetime',
+                               dateTimeLabelFormats: {
+                               //hour: '%H:%M'
+                               day: '%H:%M'
+                            }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'use percent(%)'
+                        },
+                        min: 0,
+                        minorGridLineWidth: 1,
+                        gridLineWidth: 1,
+                        alternateGridColor: null
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.percentage:.1f}%</b> ({point.y:,.0f} GB)<br/>',
+                        shared: true,
+                        valueSuffix: 'GB'
+                    },
+                    plotOptions: {
+                        area: {
+                            stacking: 'percent',
+                            lineColor: '#ffffff',
+                            lineWidth: 1,
+                            marker: {
+                                enabled: false
+                            },
+                            pointInterval: 360000, // one hour
+                            pointStart: Date.UTC(@time)
+                        }
+                    },
+                    series: [{
+                        name: 'CapacityUsed (GB)',
+                        data: @dfsInfo.capacityUsed
+                    }, {
+                        name: 'CapacityRemaining (GB)',
+                        data: @dfsInfo.capacityRemaining
+                    }, {
+                        name: 'CapacityUsedNonDFS (GB)',
+                        data: @dfsInfo.capacityUsedNonDFS
+                    }]
+                });
+            });
+
+
+
+                $(function () {
+                $('#container2').highcharts({
+                    global:{
+                            useUTC:false
+                        },
+                    chart: {
+                        type: 'spline'
+                    },
+                    credits:{
+                            enabled:false
+                        },
+                    title: {
+                        text: 'hadoop RPC'
+                    },
+                    subtitle: {
+                        text: 'number of bytes rpc read and send'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                               dateTimeLabelFormats: {
+                               //hour: '%H:%M'
+                               day: '%H:%M'
+                            }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'rpc speed (KB)'
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: 'kb'
+                    },
+                    plotOptions: {
+                        spline: {
+                            lineWidth: 2,
+                            states: {
+                                hover: {
+                                    lineWidth: 4
+                                }
+                            },
+                            marker: {
+                                enabled: false
+                            },
+                            pointInterval: 360000, // one hour
+                            pointStart: Date.UTC(@time)
+                            //pointEnd:Date.UTC(2017,2,20, 6, 0, 0)
+                        }
+                    },
+                    series: [{
+                        name: 'received (kb)',
+                        data: @rpcInfo.rec_rpc //length=16
+                    }, {
+                        name: 'sent (kb)',
+                        data: @rpcInfo.sent_rpc
+
+                    }],
+                    navigation: {
+                        menuItemStyle: {
+                            fontSize: '10px'
+                        }
+                    }
+                });
+            });
+
+
+                $(function () {
+                $('#container3').highcharts({
+                    global:{
+                            useUTC:false
+                        },
+                    chart: {
+                        type: 'spline'
+                    },
+                    credits:{
+                            enabled:false
+                        },
+                    title: {
+                        text: 'hadoop mem use'
+                    },
+                    subtitle: {
+                        text: 'number of mb MemNonHeapUsedM and MemHeapUsedM'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                               dateTimeLabelFormats: {
+                               //hour: '%H:%M'
+                               day: '%H:%M'
+                            }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'mem use speed (MB)'
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: 'mb'
+                    },
+                    plotOptions: {
+                        spline: {
+                            lineWidth: 2,
+                            states: {
+                                hover: {
+                                    lineWidth: 4
+                                }
+                            },
+                            marker: {
+                                enabled: false
+                            },
+                            pointInterval: 360000, // one hour
+                            pointStart: Date.UTC(@time)
+                        }
+                    },
+                    series: [{
+                        name: 'memNonHeapUsedM (MB)',
+                        data: @memInfo.memNonHeapUsedM //length=16
+                    }, {
+                        name: 'memHeapUsedM (MB)',
+                        data: @memInfo.memHeapUsedM
+
+                    }],
+                    navigation: {
+                        menuItemStyle: {
+                            fontSize: '10px'
+                        }
+                    }
+                });
+            });
+</script>
+
+
+
+<div class="clearfix"></div>
+@copyright()
+
+
+}
+

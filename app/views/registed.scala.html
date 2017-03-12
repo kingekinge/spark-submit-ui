@@ -1,0 +1,14 @@
+@(result: Option[String])
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registration results</title>
+    </head>
+    <body>
+        @if(!result.isEmpty) {
+            <p>@result.get</p>
+        }
+    </body>
+</html>

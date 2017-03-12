@@ -1,0 +1,32 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+            <!-- Bootstrap Core CSS -->
+        <link href="@routes.Assets.at("stylesheets/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+            <!-- Custom CSS -->
+        <link href="@routes.Assets.at("stylesheets/main.css")" rel="stylesheet" type="text/css" />
+            <!-- Graph CSS -->
+        <link href="@routes.Assets.at("stylesheets/lines.css")" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.at("stylesheets/font-awesome.css")" rel="stylesheet">
+            <!-- jQuery -->
+        <script src="@routes.Assets.at("javascripts/jquery.min.js")"></script>
+            <!-- Nav CSS -->
+        <link href="@routes.Assets.at("stylesheets/custom.css")" rel="stylesheet">
+            <!-- Metis Menu Plugin JavaScript -->
+        <script src="@routes.Assets.at("javascripts/metisMenu.min.js")"></script>
+        <script src="@routes.Assets.at("javascripts/custom.js")"></script>
+            <!-- Graph JavaScript -->
+        <script src="@routes.Assets.at("javascripts/d3.v3.js")"></script>
+        <script src="@routes.Assets.at("javascripts/rickshaw.js")"></script>
+    </head>
+    <body>
+    @content
+    </body>
+</html>

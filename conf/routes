@@ -1,0 +1,67 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           @controllers.Application.index
+GET     /login                      controllers.Authentication.login
+POST    /login                      controllers.Authentication.authenticate
+GET     /logout                     controllers.Authentication.logout
+
+#Dashboard
+
+GET     /spark_info                   @controllers.SparkList.getSparkInfo
+GET     /yarn_info                    @controllers.YarnList.getYarnInfo
+GET     /yarnlist                     @controllers.YarnList.yarnlist
+GET     /sparklist                     @controllers.SparkList.sparklist
+GET     /spark_apps                   @controllers.SparkList.getSaprkApps
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+#User
+GET     /registration             controllers.Authentication.registration
+POST    /registration             controllers.Authentication.verifying
+GET     /mail                     controllers.Authentication.mail(user)
+GET     /mail/verifyingmail       controllers.Authentication.verifyingmail(email,validateCode)
+GET     /findpwd                  controllers.Authentication.findpwd
+GET    /captcha                   controllers.Authentication.captcha
+POST    /findpwd                  controllers.Authentication.resetpwd
+GET     /mail/setpwd              controllers.Authentication.setpwd(email,pwdToken)
+POST   /updatepwd                 controllers.Authentication.updatepwd
+
+
+
+# Spark Jar
+POST     /sparkjar                     @controllers.SparkJar.upload
+GET     /executejar                    @controllers.SparkJar.executejarpage
+POST     /executejar                   @controllers.SparkJar.executejar
+GET     /errorlog                      @controllers.SparkJar.errorpage(error:String)
+
+
+
+
+#return User
+GET   /whoiam                     controllers.UserName.userName
+
+#Job
+GET   /tasklist                        @controllers.TaskManager.tasklist
+GET   /standalone                      @controllers.TaskManager.standaloneInfo
+GET   /yarn                            @controllers.TaskManager.yarnInfo
+GET   /kill                            @controllers.TaskManager.kill(appId:String)
+GET   /rerun                           @controllers.TaskManager.rerun(appId:String)
+
+
+#PUSH
+GET  /startpush                         @controllers.Application.startpush
+GET   /msglist                          @controllers.Application.msglist
+GET   /read                             @controllers.Application.read(appId:String)
+GET   /readall                          @controllers.Application.readall
+
+
+
+
+
+
+

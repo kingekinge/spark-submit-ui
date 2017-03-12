@@ -1,0 +1,293 @@
+/*!
+ * zeroModal.js
+ * http://git.oschina.net/cylansad/zeroModal
+ *
+ * Copyright 2016, Sad
+ */
+
+.zeromodal-overlay {
+    width: 100%;
+    height: 1000px;
+    position: absolute;
+    z-index: 1000;
+    opacity: 0.2;
+    background-color: rgba(0, 0, 0, .4);
+    top: 0;
+    left: 0;
+}
+
+.zeromodal-loading1 {
+    background: url(./img/loading1.gif);
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    z-index: 1200;
+}
+
+.zeromodal-loading2 {
+    background: url(./img/loading2.gif);
+    width: 37px;
+    height: 37px;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    z-index: 1200;
+}
+
+.zeromodal-container {
+    font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    position: absolute;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, .24);
+    border-radius: 2px;
+    border: none;
+    background-color: #fff;
+    z-index: 1001;
+    padding: 19px 16px;
+}
+
+.zeromodal-header {
+    margin-top: 4px;
+    margin-bottom: 18px;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.zeromodal-body {
+    font-size: 12px;
+    color: #333;
+    /*overflow-y: auto;*/
+}
+
+.zeromodal-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.zeromodal-btn {
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 14px;
+    outline: none;
+    display: inline-block;
+    margin-left: 4px;
+    font-weight: 400;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 8px;
+    line-height: 20px;
+    border-radius: 1px;
+    min-width: 80px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .32);
+    -webkit-transition: all;
+    transition: all;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+
+.zeromodal-btn:hover {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .32);
+}
+
+.zeromodal-btn-primary {
+    color: #fff;
+    background-color: #2196f3;
+    border: none;
+}
+
+.zeromodal-btn-default {
+    color: #333;
+    background-color: #fff;
+    border: none;
+    padding: 6px 8px;
+}
+
+.zeromodal-close {
+    position: relative;
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    top: -6px;
+    outline: none;
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+    -webkit-border-radius: 110px;
+    border-radius: 110px;
+    -webkit-transition: -webkit-transform 0.2s ease-out;
+    -moz-transition: -moz-transform 0.2s ease-out;
+    -o-transition: -o-transform 0.2s ease-out;
+    -ms-transition: -ms-transform 0.2s ease-out;
+}
+
+.zeromodal-close:hover {
+    -webkit-transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -o-transform: rotateZ(180deg);
+    -ms-transform: rotateZ(180deg);
+    transform: rotateZ(180deg);
+}
+
+.zeromodal-footer {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    left: 0px;
+}
+
+.zeromodal-line {
+    border: none;
+    border-top: 1px solid #efefef;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 97%
+}
+
+.zeromodal-btn-container {
+    text-align: right;
+    padding-right: 15px;
+}
+
+.zeromodal-icon {
+    width: 80px;
+    height: 80px;
+    border: 4px solid #808080;
+    border-radius: 50%;
+    margin: 16px auto 16px;
+    margin-top: 16px;
+    padding: 0;
+    position: relative;
+    box-sizing: content-box;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.zeromodal-icon.zeromodal-icon-info {
+    font-family: "Open Sans", sans-serif;
+    color: #3fc3ee;
+    border-color: #3fc3ee;
+    font-size: 60px;
+    line-height: 80px;
+    text-align: center;
+}
+
+.zeromodal-icon.zeromodal-icon-question {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #c9dae1;
+    border-color: #c9dae1;
+    font-size: 60px;
+    line-height: 80px;
+    text-align: center;
+}
+
+.zeromodal-error {
+    border-color: #f27474;
+}
+
+.zeromodal-icon.zeromodal-error .x-mark {
+    position: relative;
+    display: block;
+}
+
+.zeromodal-icon.zeromodal-error .line.left {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    left: 17px;
+}
+
+.zeromodal-icon.zeromodal-error .line {
+    position: absolute;
+    height: 5px;
+    width: 47px;
+    background-color: #f27474;
+    display: block;
+    top: 37px;
+    border-radius: 2px;
+}
+
+.zeromodal-icon.zeromodal-error .line.right {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    right: 16px;
+}
+
+.zeromodal-icon.zeromodal-success {
+    border-color: #a5dc86;
+}
+
+.zeromodal-icon.zeromodal-success .line.tip {
+    width: 25px;
+    left: 14px;
+    top: 46px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.zeromodal-icon.zeromodal-success .line {
+    height: 5px;
+    background-color: #a5dc86;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 2;
+}
+
+.zeromodal-icon.zeromodal-success .line.long {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.zeromodal-icon.zeromodal-success .placeholder {
+    width: 80px;
+    height: 80px;
+    border: 4px solid rgba(165, 220, 134, .2);
+    border-radius: 50%;
+    box-sizing: content-box;
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    z-index: 2;
+}
+
+.zeromodal-title1 {
+    width: 100%;
+    text-align: center;
+    color: #575757;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 0;
+}
+
+.zeromodal-title2 {
+    width: 100%;
+    text-align: center;
+    color: #B7B7B7;
+    font-size: 13px;
+    padding: 8px 0;
+}
+
+.zeromodal-overflow-y {
+    overflow-y: auto;
+}

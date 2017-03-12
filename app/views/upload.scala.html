@@ -1,0 +1,418 @@
+@(form: Form[ExecuteModel])
+@sidebar = {
+    <div class="sidebar-menu toggle-others collapsed">
+
+        <div class="sidebar-menu-inner">
+
+            <header class="logo-env">
+
+                    <!-- logo -->
+                <div class="logo">
+                    <a href="@routes.Application.index" class="logo-expanded">
+                        <img src="@routes.Assets.at("images/neptune.png")" width="90" alt="" />
+                    </a>
+
+                    <a href="@routes.Application.index" class="logo-collapsed">
+                        <img src="@routes.Assets.at("images/favicon.png")" width="40" alt="" />
+                    </a>
+                </div>
+
+                    <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+                <div class="mobile-menu-toggle visible-xs">
+                    <a href="#" data-toggle="user-info-menu">
+                        <i class="fa-bell-o"></i>
+                        <span class="badge badge-success">7</span>
+                    </a>
+
+                    <a href="#" data-toggle="mobile-menu">
+                        <i class="fa-bars"></i>
+                    </a>
+                </div>
+
+                    <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+                <div class="settings-icon">
+                    <a href="#" data-toggle="settings-pane" data-animate="true">
+                        <i class="fa fa-cog fa-4x"></i>
+                    </a>
+                </div>
+
+
+            </header>
+
+
+            <ul id="main-menu" class="main-menu">
+                    <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+                    <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+                <li>
+                    <a href="@routes.Application.index">
+                        <i class="fa fa-dashboard fa-fw"></i>
+                        <span class="title">dashboard</span>
+                    </a>
+                </li>
+                        <li class="active">
+                            <a href="@routes.SparkJar.executejarpage">
+                                <i class="fa fa-graduation-cap"></i>
+                                <span class="title">spark-jar</span>
+                            </a>
+                        </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-table"></i>
+                        <span class="title">apps</span>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="@routes.YarnList.yarnlist">
+                                <span class="title">yarn-apps</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@routes.SparkList.sparklist">
+                                <span class="title">spark-apps</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+}
+@main("Neputune Spark-jar-uploadJar")(sidebar) {
+
+    <link href="@routes.Assets.at("stylesheets/datapp.css")" rel="stylesheet">
+    <link href="@routes.Assets.at("stylesheets/jarcustom.css")" rel="stylesheet">
+<script src="@routes.Assets.at("javascripts/jquery.form.js")" type="text/javascript" ></script>
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/sweetalert.css")" type="text/css"/>
+<script src="@routes.Assets.at("javascripts/sweetalert.min.js")" type="text/javascript"></script>
+
+<link rel="stylesheet" href="@routes.Assets.at("stylesheets/zeroModal.css")" type="text/css"/>
+<script src="@routes.Assets.at("javascripts/zeroModal.js")" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+            // bind 'myForm' and provide a simple callback function
+            $('#jarForm').ajaxForm(function() {
+                alert("Thank you for your comment!");
+            });
+        });
+    </script>
+
+
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/tooltipster.bundle.min.css")" type="text/css"/>
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/tooltipster-sideTip-punk.min.css")" type="text/css"/>
+    <script src="@routes.Assets.at("javascripts/tooltipster.bundle.min.js")" type="text/javascript"></script>
+
+    <div class="page-title">
+
+        <div class="title-env">
+            <h1 class="title">Spark Jar</h1>
+            <p class="description">spark jar interact</p>
+        </div>
+
+        <div class="breadcrumb-env">
+
+            <ol class="breadcrumb bc-1">
+                <li>
+                    <a href="@routes.Application.index"><i class="fa-home"></i>Home</a>
+                </li>
+                <li class="active">
+
+                    <strong>spark-jar</strong>
+                </li>
+            </ol>
+
+        </div>
+
+    </div>
+
+    <div class="graphs">
+        <div class="xs">
+          <form action="/executejar" method="POST" id="jarForm">
+            <div class="panel panel-color panel-psuccess">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Please upload the jar</h5>
+
+                    <div class="panel-options">
+                        <span>RUN</span>
+                        <a href="#" class="toop" title="Click here to execute a program">
+                            <span class="fa fa-play" id="submit"></span>
+                        </a>
+                        <span>Setting</span>
+                        <a href="#" class="toop" title="Click here to set">
+                            <span class="fa fa-wrench" id="setting"></span>
+                        </a>
+                        <a href="#" data-toggle="panel">
+                            <span class="collapse-icon">&ndash;</span>
+                            <span class="expand-icon">+</span>
+                        </a>
+
+                    </div>
+                </div>
+
+
+                <div class="panel-body" >
+
+
+                        <script type="text/javascript">
+                                var FILENAME="";
+                                jQuery(document).ready(function($)
+                                {
+                                    var i = 1,
+                                            $example_dropzone_filetable = $("#example-dropzone-filetable"),
+                                            example_dropzone = $("#advancedDropzone").dropzone({
+                                                url: '/sparkjar',
+
+                                                // Events
+                                                addedfile: function(file)
+
+                                                {
+                                                    FILENAME = file.name;
+                                                    var location = "/tmp/file/" + FILENAME;
+                                                    $("#jarlocation").val(location).removeClass("alert-success").removeClass("alert-danger").addClass("alert-success");
+
+                                                    if(i == 1)
+                                                    {
+                                                        $example_dropzone_filetable.find('tbody').html('');
+                                                    }
+
+                                                    var size = parseInt(file.size/1024, 10);
+                                                    size = size < 1024 ? (size + " KB") : (parseInt(size/1024, 10) + " MB");
+
+                                                    var $el = $('<tr>\
+                                                    <td class="text-centers">'+(i++)+'</td>\
+                                                    <td>'+file.name+'</td>\
+                                                    <td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+                                                    <td>'+size+'</td>\
+                                                    <td>Uploading...</td>\
+                                                </tr>');
+
+
+                                                    $example_dropzone_filetable.find('tbody').append($el);
+                                                    file.fileEntryTd = $el;
+                                                    file.progressBar = $el.find('.progress-bar');
+                                                },
+
+                                                uploadprogress: function(file, progress, bytesSent)
+                                                {
+                                                    file.progressBar.width(progress + '%');
+                                                },
+
+                                                success: function(file)
+                                                {
+                                                    file.fileEntryTd.find('td:last').html('<span class="alert-success">Uploaded successfully!</span>');
+                                                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                                                },
+
+                                                error: function(file)
+                                                {
+                                                    file.fileEntryTd.find('td:last').html('<span class="alert-danger">Upload failed!</span>');
+                                                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+                                                    $("#jarlocation").val("Invalid file!Upload failed!!");
+                                                    $("#jarlocation").addClass("alert-danger");
+                                                }
+                                            });
+
+                                    $("#advancedDropzone").css({
+                                        minHeight: 200
+                                    });
+
+
+                                    $("#submit").click(function(){
+                                        var $adata=null;
+                                        //$("#jarForm").submit();
+                                             var $mode = $("#masters").find("option:selected").val();
+                                            swal({
+                                            title: "submit the jar?",
+                                            text: "The current submit mode "+$mode,
+                                            type: "info",
+                                            confirmButtonText: "confirm",
+                                            cancelButtonText: "cancel",
+                                            showCancelButton: true,
+                                            closeOnConfirm: false,
+                                            showLoaderOnConfirm: true,
+                                             }, function(){
+                                              setTimeout(function(){
+                                                 $('#jarForm').ajaxSubmit(
+                                                  function(data){
+                                                     if(data!="Task submitted successfully!"){
+                                                      $adata=data
+                                                            swal({
+                                                          title: "Operation is completed",
+                                                          text: "failure",
+                                                          type: "error",
+                                                          showCancelButton: false,
+                                                          confirmButtonText: "confirm",
+                                                          closeOnConfirm: true,
+                                                          closeOnCancel: false },
+                                                          function(isConfirm){
+                                                                 if($adata!=null){
+                                                                     $adata=$adata.replace(/\n/g,"<br/>");
+                                                                 }
+                                                                        zeroModal.show({
+                                                                              title: 'Spark submited error logs,please check your parameters',
+                                                                              content: $adata,
+                                                                              width: '50%',
+                                                                              height: '80%',
+                                                                              overlay: true
+                                                                        });
+
+
+                                                                });
+                                                     }else{
+                                                                         swal({
+                                                          title: "Operation is completed",
+                                                          text: data+" /Task Management  See the task details",
+                                                          type: "success",
+                                                          showCancelButton: false,
+                                                          confirmButtonText: "confirm",
+                                                          closeOnConfirm: true,
+                                                          closeOnCancel: false },
+                                                          function(isConfirm){
+                                                                    window.location="/tasklist";
+                                                                });
+
+                                                     }
+
+
+
+
+                                                    }
+                                                    );
+
+
+                                                }, 5000);
+
+                                               });
+
+
+
+
+                                      });
+                                });
+                        </script>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-3 text-centers">
+
+                                <div id="advancedDropzone" class="droppable-area" title="Drag and drop files here or click select files to upload">
+                                    Drag and drop files
+                                </div>
+                                <script>
+                                        $(document).ready(function() {
+                                            $('.toop').tooltipster({
+                                                theme: 'tooltipster-punk'
+                                            });
+
+                                            $('.droppable-area').tooltipster({
+                                                theme: 'tooltipster-punk'
+                                            });
+                                        });
+                                </script>
+                            </div>
+                            <div class="col-sm-9">
+
+                                <table class="table table-bordered table-striped" id="example-dropzone-filetable">
+                                    <thead>
+                                        <tr>
+                                            <th width="1%" class="text-centers">#</th>
+                                            <th width="50%">Jar Name</th>
+                                            <th width="20%">Upload progress</th>
+                                            <th>File size</th>
+                                            <th>Upload status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5">Files list will appear here</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    <div class="xs">
+                        <h3>执行参数</h3>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="horizontal-form">
+                                <div class="form-horizontal" >
+
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">--Master</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control meduim" id="masters" name="master">
+                                                <option  option:selected value="yarn-cluster">yarn</option>
+                                                <option value="standalone">standalone</option>
+                                                <!--<option value="local">local</option>-->
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">--class</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="executeClass" id="executeClass" placeholder="Please enter the...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">
+                                            --num-executors</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="numExecutors" id="numExecutors" placeholder="Please enter the...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">
+                                            --driver-memory</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="driverMemory" id="driverMemory" placeholder="Please enter the...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">
+                                            --executor-memory</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="executorMemory" id="executorMemory" placeholder="Please enter the...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">
+                                            --total_executor_cores</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="total-executor-cores" id="executorCores" placeholder="Please enter the...">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">jar location</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="jarLocation" id="jarlocation" value="" id="largeinput" placeholder="To automatically fill in the file upload success.">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-n">
+                                        <label for="largeinput" class="col-sm-2 control-label label-input-lg">args</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control large" name="args1" id="args1" placeholder="Please enter the...">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    </div>
+
+                </div>
+
+
+              </form>
+        </div>
+    </div>
+}

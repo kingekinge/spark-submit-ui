@@ -1,0 +1,53 @@
+@(form: Form[Registration])
+
+@plain("register"){
+<h2 style="margin-top:10%" class="form-heading"><font color="#FBFBFB">Welcome to register</font></h2>
+<div class="app-cam">
+
+    @helper.form(routes.Authentication.verifying){
+    <input type="text" name="email" class="text" value="@form("email").value" placeholder="Please enter  email address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Please enter  email address';}">
+    @if(form.hasErrors && !form.error("email").isEmpty){
+        @if(form.error("email").get.message.equals("error.required")){
+        <font color="red">Email cannot be empty</font>
+        }else{
+    <p class="error"><font color="red">@form.error("email").get.message</font></p>
+        }
+    }
+    <input type="text" name="name" class="text" value="@form("name").value" placeholder="Please enter your name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Please enter your name';}">
+    @if(!form.error("name").isEmpty){
+        @if(form.error("name").get.message.equals("error.required")){
+            <font color="red">The name cannot be empty</font>
+    }else{
+    <p class="error"><font color="red">@form.error("name").get.message</font></p>
+        }
+    }
+    <input type="password" name="password"  placeholder="Please enter the password" onfocus="this.value = '' onblur="if (this.value == '') {this.value = 'Please enter  password';}">
+    <input type="password" name="repassword"  placeholder="Please confirm password again" onfocus="this.value = '' onblur="if (this.value == '') {this.value = 'Please enter  password again';}">
+    @if(form.hasErrors && !form.error("repassword").isEmpty){
+    @if(form.error("repassword").get.message.equals("error.required")){
+        <font color="red">Password cannot be empty</font>
+    }else{
+     <p class="error"><font color="red">@form.error("repassword").get.message</font></p>
+     }
+    }
+
+    @if(form.hasErrors){
+    @form.globalError.map { error =>
+    <p class="error">
+        <font color="red">@error.message</font>
+    </p>
+    }
+    }
+    <div class="submit">
+        <input type="submit" id="loginbutton" value="Register">
+    </div>
+
+    <ul class="new">
+        <li class="new_left">
+            <p class="sign"><a href="/login"><font color="#FBFBFB"> Login</font></a></p>
+        </li>
+        <div class="clearfix"></div>
+    </ul>
+
+    }
+}

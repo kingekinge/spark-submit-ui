@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="eng" lang="eng">
+    <head>
+        <title>Page not found : 404</title>
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/error.css")" type="text/css" />
+        <link href="@routes.Assets.at("stylesheets/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.at("stylesheets/font-awesome.css")" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid content">
+            <div class="row">
+                <div id="content" class="col-sm-12 full">
+
+                    <div class="row box-error">
+
+                        <div class="col-lg-12 col-md-12 col-xs-12">
+                            <div class="text-center">
+                                <h1>404</h1>
+                                <h2>Oops! Bad request ...</h2>
+                                <p>Request not found!</p>
+                                <a href="@routes.Application.index">
+                                    <button class="btn btn-default"><span class="fa fa-chevron-left"> Go Home</span></button>
+                                </a>
+                                <a href="#">
+                                    <button class="btn btn-default"><span class="fa fa-envelope"> Contact Admin</span></button>
+                                </a>
+                            </div>
+
+                        </div> <!--/col-->
+
+                    </div> <!--/row-->
+
+                </div> <!--/content-->
+
+            </div> <!--/row-->
+        </div>
+
+    </body>
+</html>
