@@ -3,7 +3,7 @@ package models.actor
 import akka.actor.Actor
 
 /**
-  * Created by liangkai on 16/7/4.
+  * Created by kinge on 16/7/4.
   */
 trait ActorStack extends Actor {
   def wrappedReceive: Receive

@@ -3,7 +3,7 @@ package models.actor
 import org.slf4j.LoggerFactory
 
 /**
-  * Created by liangkai on 16/7/4.
+  * Created by kinge 16/7/4.
   */
 trait Slf4jLogging extends ActorStack {
   val logger = LoggerFactory.getLogger(getClass)

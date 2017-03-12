@@ -8,7 +8,7 @@ import play.api.libs.iteratee.{Concurrent, Enumerator}
 case class Send(data:String)
 
 /**
-	* Created by liangkai on 16/8/18.
+	* Created by kinge on 16/8/18.
 	*/
 object WebSocketChannel {
 

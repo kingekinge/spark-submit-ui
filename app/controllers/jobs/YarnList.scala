@@ -20,9 +20,6 @@ class YarnList @Inject()(conf:Config) extends Controller {
     Ok(views.html.yarnlist())
   }
 
-  def sparklist=Action{
-    Ok("")
-  }
 }
 
 

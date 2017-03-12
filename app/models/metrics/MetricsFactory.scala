@@ -5,7 +5,7 @@ import play.api.Logger
 import play.api.libs.json.{JsValue, Json}
 
 /**
-  * Created by laingkai1 on 2017/2/23.
+  * Created by kinge on 2016/7/23.
   * <p>metric data computing related @host:port/jmx<p>
   *
   */

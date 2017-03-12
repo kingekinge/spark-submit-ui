@@ -1,7 +1,6 @@
 package models
 
 import models.utils.Configuration
-import org.apache.spark.SparkContext
 
 import scala.util.matching.Regex
 

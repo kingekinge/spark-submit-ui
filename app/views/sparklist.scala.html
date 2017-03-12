@@ -7,13 +7,6 @@
 
             <!-- logo -->
             <div class="logo">
-                <a href="@routes.Application.index" class="logo-expanded">
-                    <img src="@routes.Assets.at("images/neptune.png")" width="90" alt="" />
-                </a>
-
-                <a href="@routes.Application.index" class="logo-collapsed">
-                    <img src="@routes.Assets.at("images/favicon.png")" width="40" alt="" />
-                </a>
             </div>
 
             <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
@@ -45,13 +38,13 @@
             <li>
                 <a href="@routes.Application.index">
                     <i class="fa fa-dashboard fa-fw"></i>
-                    <span class="title">Instrument Panel</span>
+                    <span class="title">Dashboard</span>
                 </a>
             </li>
             <li>
                 <a href="@routes.SparkJar.executejarpage">
-                    <i class="fa fa-graduation-cap"></i>
-                    <span class="title">SPARK-JAR-Application</span>
+                    <i class="fa fa-free-code-camp"></i>
+                    <span class="title">SPARK-JAR</span>
                 </a>
             </li>
             <li class="opened active">
@@ -60,14 +53,14 @@
                     <span class="title">APP-DATA</span>
                 </a>
                 <ul>
-                    <li class="active">
+                    <li >
                         <a href="@routes.YarnList.yarnlist">
-                            <span class="title">Yarn Data List</span>
+                            <span class="title">Yarn-Apps</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="@routes.SparkList.sparklist">
-                            <span class="title">Spark Data List</span>
+                            <span class="title">Spark-Apps</span>
                         </a>
                     </li>
                 </ul>
@@ -81,7 +74,7 @@
 
 </div>
 }
-@main("Neptun Dashboard")(sidebar) {
+@main("Spark-Apps")(sidebar) {
 
 
 <script src="@routes.Assets.at("javascripts/jquery.dataTables.min.js")"></script>
@@ -99,8 +92,8 @@
 <div class="page-title">
 
     <div class="title-env">
-        <h1 class="title">Yarn scheduling task information list</h1>
-        <p class="description">Yarn scheduling task information list view panel</p>
+        <h1 class="title">Spark apps information list</h1>
+        <p class="description">Spark apps for all users</p>
     </div>
 
     <div class="breadcrumb-env">
@@ -113,9 +106,9 @@
                 <a href="#">App-Data</a>
             </li>
             <li class="active">
-
-                <strong>Yarn-Apps</strong>
+                <strong>Spark-Apps</strong>
             </li>
+
         </ol>
 
     </div>
@@ -127,7 +120,7 @@
 
     <div class="panel panel-color panel-purple">
         <div class="panel-heading">
-            <h3 class="panel-title">Yarn-Apps</h3>
+            <h3 class="panel-title">Spark-Apps</h3>
 
             <div class="panel-options">
                 <a href="#" data-toggle="panel">

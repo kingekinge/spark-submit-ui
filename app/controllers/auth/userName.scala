@@ -12,8 +12,7 @@ object UserName extends Controller with Secured {
     if (username.contains("@")){
       shortName = username.split("@")(0)
     }
-    val data = "{\"user\":" + "\"" + username + "\",\"shortName\":" + "\"" + shortName + "\"}"
-    Ok(Json.parse(data))
+    Ok(Json.obj("user"->username,"shortName"->shortName))
 
   }
 }

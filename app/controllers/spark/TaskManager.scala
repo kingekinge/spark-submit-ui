@@ -5,9 +5,8 @@ import models.TaskDataProvider.AppDataObject
 import models._
 import models.utils.Config
 import play.api.Logger
-import play.api.libs.json.{JsValue, Json}
 import play.api.libs.ws.WS
-import play.api.mvc.{Action, Controller, Results}
+import play.api.mvc.{Action, Controller}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.language.postfixOps

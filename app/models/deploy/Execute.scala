@@ -12,9 +12,7 @@ import akka.pattern.ask
 import models.deploy.StatusListener.PushStack
 import models.deploy.{CreateBatchRequest, StatusListener}
 import models.utils.{Config, Configuration}
-import play.api.Logger
 import play.api.libs.iteratee.Concurrent
-import play.libs.Akka
 
 import scala.concurrent.duration.Duration
 import scala.concurrent._
@@ -45,21 +43,6 @@ class Execute {
           val actorPath: ActorPath = _actorSystem.actorOf(MessagePool.props(webSocketChannel),s"UserActor_$id").path
          _statusLister ! PushStack(user,actorPath)
   }
-
-  import scala.concurrent.duration._
-  import ExecutionContext.Implicits.global
-
-//  Akka.system.scheduler.schedule(10.second,  5.second, new Runnable {
-//    override def run(): Unit = {
-//      val _paths: ActorPath = StatusListener._paths("kingekinge@163.com")
-//      println("push to ...")
-//      val act = _actorSystem.actorSelection(_paths)
-//      act ! RUNNING
-//    }
-//  })
-
-
-
 
 
   private def getRequest(executeModel: ExecuteModel): CreateBatchRequest ={

@@ -13,7 +13,7 @@ import play.api.mvc._
 
 
 /**
-  * Created by king on 16/6/22.
+  * Created by kinge on 16/6/22.
   */
 class SparkJar @Inject() (taskDao: TaskDao,taskProvider: TaskProvider[AppDataObject],execute: Execute) extends Controller with Secured {
 

@@ -2,7 +2,7 @@ package models.actor
 
 
 /**
-  * Created by liangkai on 16/7/4.
+  * Created by kinge on 16/7/4.
   */
 abstract class InstrumentedActor extends ActorStack with Slf4jLogging  {
 

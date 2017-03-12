@@ -7,9 +7,8 @@ import models.io.{Message, TaskMessage}
 import models.{FAILED, KILLED, _}
 import models.utils.Config
 import play.api.Logger
-import play.libs.Akka
 
-import scala.concurrent.ExecutionContext
+
 
 /**
   * Created by kinge on 16/7/11.

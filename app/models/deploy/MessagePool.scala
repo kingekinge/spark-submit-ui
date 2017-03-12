@@ -16,7 +16,7 @@ object NEW extends  State
 
 
 /**
-  * Created by liangkai on 16/8/31.
+  * Created by kinge on 16/8/31.
   */
 object MessagePool {
   def props(webSocketChannel: ActorRef): Props = Props(new MessagePool(webSocketChannel))

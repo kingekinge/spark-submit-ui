@@ -3,10 +3,8 @@ package models
 import play.api.libs.json.JsValue
 
 /**
-  * Created by kinge on 2017/2/21.
+  * Created by kinge on 2016/8/21.
   */
-
-
 sealed class  BaseInfo;
 /**
   * RPC INFO
