@@ -51,7 +51,7 @@ object Email {
 
       }
       email.send()
-      "Email activation is successful, please check the email to the mailbox"
+      "Email has been sent, please check the email to the mailbox"
     }
 
 
@@ -102,7 +102,7 @@ object Email {
         " background-position: initial initial; background-repeat: initial initial;background:#fff;\">\n<tbody>\n<tr>\n<th valign=\"middle\" style=\"height: 25px; line-height: 25px; padding: 15px 35px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #C46200; background-color: #FEA138; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;\">\n<font face=\"微软雅黑\" size=\"5\" style=\"color: rgb(255, 255, 255); \">Spark-submit-ui</font>\n</th>\n</tr>\n<tr>\n<td>\n" +
         "<div style=\"padding:25px 35px 40px; background-color:#fff;\">\n" +
         "<h2 style=\"margin: 5px 0px; \"><font color=\"#333333\" style=\"line-height: 20px; \"><font style=\"line-height: 22px; \" size=\"4\">Dear:"+username+"</font></font></h2>\n<p>\nYou receive this email, it is because in spark-submit-ui for the new user registration, or the user to change the password to use this email address.\n\n" +
-        "<p>\n\n<h2 style=\"margin: 5px 0px; \"><font color=\"#333333\" style=\"line-height: 20px; \"><font style=\"line-height: 22px; \" size=\"4\">Account activation instructions</font></font></h2>\n<p>Need to check your address validityYou can simply click on the links below to activate your account\nYou can simply click on the links below to activate your account<br/>\n <a href="+hostname+"/mail/verifyingmail?email="+email+"&validateCode="+validateCode+">"+hostname+"/mail/verifyingmail?email="+email+"&validateCode="+validateCode+"</a></p>\n\n<p/>"+"</p>\n<p align=\"right\"> spark-submit-ui</p>" +
+        "<p>\n\n<h2 style=\"margin: 5px 0px; \"><font color=\"#333333\" style=\"line-height: 20px; \"><font style=\"line-height: 22px; \" size=\"4\">Account activation</font></font></h2>\n<p>Need to check your address validityYou can simply click on the links below to activate your account\nYou can simply click on the links below to activate your account<br/>\n <a href="+hostname+"/mail/verifyingmail?email="+email+"&validateCode="+validateCode+">"+hostname+"/mail/verifyingmail?email="+email+"&validateCode="+validateCode+"</a></p>\n\n<p/>"+"</p>\n<p align=\"right\"> spark-submit-ui</p>" +
         "\n<p align=\"right\">"+time+"</p>\n</div>\n</td>\n</tr>\n</tbody>\n</table>\n</div>\n\n\n</body>\n</html>"
 
     }

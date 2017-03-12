@@ -1,8 +1,7 @@
 @(form: Form[(String,String)])
 
 @plain("Set the password"){
-<div class="login-logo"><img src="@routes.Assets.at("images/favicon.png")" alt=""/></div>
-<h2 class="form-heading"><font color="#FBFBFB">Set the password</font></h2>
+<h2 style="margin-top:10%" class="form-heading"><font color="#FBFBFB">Set the password</font></h2>
 <div class="app-cam">
 
     @if(form.hasErrors){
@@ -30,7 +29,4 @@
     </ul>
 
     }
-</div class="app-cam">
-<div class="clearfix"></div>
-@copyright()
 }

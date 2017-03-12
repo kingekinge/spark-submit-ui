@@ -75,10 +75,6 @@ object Authentication  extends Controller with  Secured{
   }
 
 
-  /**
-    * 用户鉴权验证
-    * @return
-    */
   def verifying = Action { implicit request =>
     registForm.bindFromRequest.fold(
       formWithErrors => {
@@ -92,45 +88,22 @@ object Authentication  extends Controller with  Secured{
     )
   }
 
-
-  /**
-    * 验证邮箱
-    *
-    * @param email
-    * @return
-    */
   def validateEmail(email: String) :Boolean= {
     val regex =("""^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$""").r
     regex.findAllIn(email).hasNext
   }
 
-  /**
-    * 验证用户名
-    *
-    * @param name
-    * @return
-    */
   def validateName(name: String) :Boolean= {
     val regex: Regex = ("""^[A-Za-z0-9]+$""").r
     regex.findAllIn(name).hasNext
   }
 
 
-  /**
-    * 验证密码
-    * @param registration
-    * @return
-    */
   def validatePassword(registration:Registration): Boolean ={
     StringUtils.equals(registration.password,registration.repassword)
   }
 
 
-  /**
-    * 发送邮件验证
-    *
-    * @return
-    */
   def sendEmail(user:String): String ={
     val jsValue: JsValue = Json.parse(user)
     val email: Option[String] = jsValue.\("email").asOpt[String]
@@ -142,56 +115,34 @@ object Authentication  extends Controller with  Secured{
         Email.sendHtmlMail(Verify(email.getOrElse(null),captcha.getOrElse(null),name.getOrElse(null)))
       else
         Email.sendHtmlMail(User(email.getOrElse(null),name.getOrElse(null),password.getOrElse(null)))
-      else "发送邮件失败,请检查注册信息"
+      else "Send mail failed, please check the registration information"
   }
 
 
 
   import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
-  /**
-    * 发送邮件
-    * @param user
-    * @return
-    */
   def mail(user:String) = Action.async {
     val future: Future[String] = scala.concurrent.Future { sendEmail(user) }
     future.map(i => Ok("Got result: " + i))
   }
 
 
-  /**
-    * 验证激活
-    * @param email
-    * @param validateCode
-    * @return
-    */
   def verifyingmail(email:String,validateCode:String) = Action{
     Email.activateUser((email,validateCode)) match {
       case  e : EmailExecption =>  BadRequest(views.html.registed(e.unapply(e)))
       case  v : VerifyException => BadRequest(views.html.registed(v.unapply(v)))
       case  f : Failure => BadRequest(views.html.registed(f.unapply(f)))
-      case  s : Success => Ok(email+" 注册成功 ~ ")
+      case  s : Success => Ok(email+" Registered successfully ~ ")
     }
   }
 
 
-  /**
-    * 验证验证码
-    *
-    * @param captcha1
-    * @return
-    */
   def verifyCaptcha(captcha1:String,captcha2:String):Boolean={
-    Logger.info("输入:"+captcha1+"  生成:"+captcha2)
     StringUtils.equalsIgnoreCase(captcha1,captcha2)
   }
 
 
-  /**
-    * 找回密码
-    * @return
-    */
   def findpwd=Action{
     implicit request =>
       Ok(views.html.findpwd(findPasswordForm))
@@ -219,10 +170,6 @@ object Authentication  extends Controller with  Secured{
     )
   )
 
-  /**
-    * 发送重置密码
-    * @return
-    */
   def resetpwd = Action { implicit request =>
     findPasswordForm.bindFromRequest.fold(
       formWithErrors => {
@@ -248,12 +195,6 @@ object Authentication  extends Controller with  Secured{
     })
   )
 
-  /**
-    * 设置新密码
-    * @param email
-    * @param pwdToken
-    * @return
-    */
   def setpwd(email:String,pwdToken:String)=Action{
     Email.activatePWD((email,pwdToken)) match {
       case  e : EmailExecption =>  NotFound
@@ -264,10 +205,6 @@ object Authentication  extends Controller with  Secured{
   }
 
 
-  /**
-    * 更新密码
-    * @return
-    */
   def updatepwd = Action { implicit request =>
     setPasswordForm.bindFromRequest.fold(
       formWithErrors => {
@@ -278,7 +215,7 @@ object Authentication  extends Controller with  Secured{
       user => {
         val email: String = request.session.get("findpwd").getOrElse(null)
         User.updatePWD(email,user._2)
-        Ok(email+"修改密码成功")
+        Ok(email+"Change the password successfully")
       }
     )
   }
