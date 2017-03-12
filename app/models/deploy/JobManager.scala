@@ -5,6 +5,7 @@ import java.util.concurrent.Executors._
 
 import akka.actor.{ActorRef, Cancellable, PoisonPill, Props, Terminated}
 import models.actor.InstrumentedActor
+import models.deploy.StatusListener.AppFinish
 import models.deploy._
 import models.deploy.process.{LineBufferedProcess, SparkProcessBuilder}
 import models.io.{Message, TaskMessage}
@@ -50,7 +51,7 @@ object  JobManagerActor{
   case class InvalidJar(error:String)
   case class JarStored(uri :String)
 
-  def props(config:Config,jobDAO: JobDAO,taskDao: TaskDao): Props = Props(classOf[JobManagerActor], config,jobDAO,taskDao)
+  def props(config:Config,jobDAO: JobDAO,taskDao: TaskDao,statusListener: ActorRef): Props = Props(classOf[JobManagerActor], config,jobDAO,taskDao,statusListener)
 }
 
 /**
@@ -58,7 +59,7 @@ object  JobManagerActor{
   *
   * @param jobDAO
   */
-private class JobManagerActor(config:Config,jobDAO:JobDAO,taskDao: TaskDao) extends InstrumentedActor{
+private class JobManagerActor(config:Config,jobDAO:JobDAO,taskDao: TaskDao,statusListener: ActorRef) extends InstrumentedActor{
 
 
   import JobManagerActor._
@@ -99,14 +100,7 @@ private class JobManagerActor(config:Config,jobDAO:JobDAO,taskDao: TaskDao) exte
   }
 
 
-  def Sealing:PartialFunction[String,State] ={
-    case m if(m.equals("RUNNING")) => RUNNING
-    case m if(m.equals("FINISHED")) => FINISHED
-    case m if(m.equals("KILLED")) => KILLED
-    case m if(m.equals("FAILED")) => FAILED
-    case _  => FINISHED
 
-  }
 
   def wrappedReceive: Receive = {
 
@@ -148,28 +142,7 @@ private class JobManagerActor(config:Config,jobDAO:JobDAO,taskDao: TaskDao) exte
     }
 
     case JobFinish(appId) => {
-      if (appId.startsWith("application")) {
-        val user: String = taskDao.findyarnTaskUser(appId)
-        val act = Akka.system.actorSelection(push_akka+user)
-        taskDao.queryYarnState(appId).map {
-          info =>
-            Message.addMessage(TaskMessage(info.application_id, info.state, user))
-            act ! Sealing(info.state);
-            Logger.info(s"任务结束,当前状态==>" + info.state);
-            act ! Sealing(info.state);
-            Logger.info(s"job finsh,current state==>" + info.state);
-        }
-      } else {
-        val user = taskDao.findTaskUser(appId)
-        Logger.info(s"push to $push_akka")
-        val act = Akka.system.actorSelection(push_akka+user)
-        taskDao.queryState(appId).map {
-          info =>
-            Message.addMessage(TaskMessage(info.app_id, info.state, user));
-            act ! Sealing(info.state);
-            Logger.info(s"任务结束,当前状态==>" + info.state);
-        }
-      }
+      statusListener ! AppFinish(appId)
     }
 
     case t: Terminated => self ! PoisonPill

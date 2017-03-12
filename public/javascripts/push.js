@@ -32,7 +32,6 @@
 
    function onMessage(evt)
    {
-     alert(evt.data)
      writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
       showmessage();
    }

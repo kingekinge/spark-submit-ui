@@ -7,13 +7,6 @@
 
             <!-- logo -->
             <div class="logo">
-                <a href="@routes.Application.index" class="logo-expanded">
-                    <img src="@routes.Assets.at("images/neptune.png")" width="90" alt="" />
-                </a>
-
-                <a href="@routes.Application.index" class="logo-collapsed">
-                    <img src="@routes.Assets.at("images/favicon.png")" width="40" alt="" />
-                </a>
             </div>
 
             <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
@@ -51,7 +44,7 @@
                     <li>
                         <a href="@routes.SparkJar.executejarpage">
                             <i class="fa fa-graduation-cap"></i>
-                            <span class="title">SPARK-JAR-Application</span>
+                            <span class="title">SPARK-JAR</span>
                         </a>
                     </li>
             <li>
@@ -62,12 +55,12 @@
                 <ul>
                     <li>
                         <a href="@routes.YarnList.yarnlist">
-                            <span class="title">Yarn Data List</span>
+                            <span class="title">Yarn Datas</span>
                         </a>
                     </li>
                     <li>
                         <a href="@routes.SparkList.sparklist">
-                            <span class="title">Spark Data List</span>
+                            <span class="title">Spark Datas</span>
                         </a>
                     </li>
 
@@ -79,7 +72,7 @@
 
 </div>
 }
-@main("Neptun User Task Management")(sidebar) {
+@main("Task Management")(sidebar) {
 
 <div class="page-title">
 
@@ -579,7 +572,6 @@ function MillisecondToDate(msd) {
 <script src="@routes.Assets.at("javascripts/jquery.nicescroll.js")" type="text/javascript" ></script>
 <script src="@routes.Assets.at("javascripts/jquery.dataTables.js")" type="text/javascript" ></script>
 <script src="@routes.Assets.at("javascripts/scripts.js")" type="text/javascript" ></script>
-<script src="@routes.Assets.at("javascripts/editable-table.js")" type="text/javascript" ></script>
 
 
 }

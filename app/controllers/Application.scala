@@ -41,21 +41,10 @@ class Application @Inject()(metricsProvider: MetricsProvider)(execute: Execute) 
 
   def startpush =  WebSocket.using[String] { implicit request =>
     val user: String = request.session.get("email").get
-//    if(!WebSocketChannel._paths.get(user).isDefined) {
-//      val (out,channel) = Concurrent.broadcast[String]
-//      val webSocketChannel = Akka.system.actorOf(WebSocketChannel.props(channel))
-//      Akka.system.actorOf(MessagePool.props(webSocketChannel),s"MessagePool$user")
-//      WebSocketChannel._paths += (user-> (out, channel));
-
-//    }
-
     val (out,channel) = Concurrent.broadcast[String]
-
     val in = Iteratee.foreach[String] { msg =>
-        Logger.info(msg)
-
+        execute.register(user,request.id.toString,channel)
     }
-    channel.push("daadadad")
     (in,out)
   }
 

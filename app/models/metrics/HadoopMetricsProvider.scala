@@ -40,12 +40,6 @@ class HadoopMetricsProvider extends MetricsProvider{
   }
 
 
-   def getMetricMouled[T](clz:Class[_]):T={
-    clz.getClass match  {
-      case _=> _factory.queryMetrics(clz)
-    }
-
-  }
 
   private def getRpcInfo(json:JsValue)={
     val receivedBytes = (json \\ "ReceivedBytes")(0).as[Long]
@@ -87,8 +81,7 @@ class HadoopMetricsProvider extends MetricsProvider{
     })
   }
 
-
-
-
-
+  override def getMetricMouled[T](clz: Class[_]): T = {
+       _factory.queryMetrics(clz)
+  }
 }
