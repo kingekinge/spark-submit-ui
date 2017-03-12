@@ -1,5 +1,4 @@
 package controllers
-import akka.actor.{ActorSelection, Terminated}
 import models._
 import org.apache.commons.lang3.StringUtils
 import play.api.Play.current
@@ -9,8 +8,6 @@ import play.api.data.Forms._
 import play.api.data._
 import play.api.libs.json.{JsObject, JsValue, Json}
 import play.api.mvc._
-import play.libs.Akka
-
 import scala.concurrent.Future
 import scala.language.postfixOps
 import scala.util.matching.Regex
@@ -22,7 +19,7 @@ object Authentication  extends Controller with  Secured{
 
   val loginForm = Form(
     tuple(
-      "email" -> text.verifying("用户不存在,请先注册",User.hasUser(_)).verifying("用户还未激活",User.isActivate(_).isDefined),
+      "email" -> text.verifying("User does not exist, please register first",User.hasUser(_)).verifying("User has not been activated",User.isActivate(_).isDefined),
       "password" -> text
     ) verifying ("Invalid email or password", result => result match {
         case (email, password) => User.authenticate(email, password).isDefined
@@ -41,10 +38,8 @@ object Authentication  extends Controller with  Secured{
    */
   def logout = IsAuthenticated {
     username => implicit request =>
-    val messagePool: ActorSelection = Akka.system.actorSelection(s"/user/MessagePool$username")
-    messagePool ! Terminated
     Redirect(routes.Authentication.login).withNewSession.flashing(
-      "success" -> "成功退出"
+      "success" -> "Successful exit"
     )
   }
 
@@ -61,11 +56,11 @@ object Authentication  extends Controller with  Secured{
 
   val registForm = Form(
     mapping(
-      "email" ->nonEmptyText.verifying("邮箱格式验证错误",validateEmail(_)).verifying("邮箱已存在",!User.findByEmail(_).isDefined),
-      "name"-> nonEmptyText.verifying("姓名含有非法字符",validateName(_)),
+      "email" ->nonEmptyText.verifying("Email address  validation errors",validateEmail(_)).verifying("email has been in existence",!User.findByEmail(_).isDefined),
+      "name"-> nonEmptyText.verifying("Name contains illegal characters",validateName(_)),
       "password" -> nonEmptyText,
       "repassword"->nonEmptyText
-    )(Registration.apply)(Registration.unapply) verifying ("两次密码不一致", result => result match {
+    )(Registration.apply)(Registration.unapply) verifying ("Passwords don't match", result => result match {
       case  registration => validatePassword(registration)
     })
   )
@@ -148,10 +143,6 @@ object Authentication  extends Controller with  Secured{
       Ok(views.html.findpwd(findPasswordForm))
   }
 
-  /**
-    * 验证码
-    * @return
-    */
   def captcha =Action{
     implicit request =>
     val verifyCode = CaptchaUtils.generateVerifyCode(4)
@@ -163,8 +154,8 @@ object Authentication  extends Controller with  Secured{
 
   val findPasswordForm = Form(
     tuple(
-      "email" -> text.verifying("用户不存在,请检查输入邮箱", User.findByEmail(_).isDefined).verifying("用户还未激活",User.isActivate(_).isDefined),
-      "captcha" -> text.verifying("验证码错误",x=>{
+      "email" -> text.verifying("User does not exist, please check the input mailbox", User.findByEmail(_).isDefined).verifying("User has not been activated",User.isActivate(_).isDefined),
+      "captcha" -> text.verifying("verification code error",x=>{
         verifyCaptcha(x,Cache.getAs[String]("captcha").get)
       })
     )
@@ -190,7 +181,7 @@ object Authentication  extends Controller with  Secured{
   val setPasswordForm = Form(
     tuple(
       "password" -> nonEmptyText,
-      "repassword" -> nonEmptyText) verifying ("两次密码不一致", result => result match {
+      "repassword" -> nonEmptyText) verifying ("Passwords don't match", result => result match {
       case (password, repassword) => StringUtils.equals(password,repassword)
     })
   )
