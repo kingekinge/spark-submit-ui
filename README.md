@@ -47,6 +47,5 @@ db.default.pass="a strong password" </pre>
 
 spark-submit-ui: https://github.com/kingekinge/spark-submit-ui 
 playframework:https://www.playframework.com
-spark:http://spark.apache.org
 
 
