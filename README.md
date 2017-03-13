@@ -45,7 +45,7 @@ db.default.pass="a strong password" </pre>
 <b>更详细的日志信息可以在logs下的文件查看</b>
 
 
-spark-submit-ui: https://github.com/kingekinge/spark-submit-ui
+spark-submit-ui: https://github.com/kingekinge/spark-submit-ui 
 playframework:https://www.playframework.com
 spark:http://spark.apache.org
 
