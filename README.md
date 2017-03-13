@@ -10,14 +10,14 @@
 #### 修改配置文件，将集群地址替换为你的
 文件路径在
 <pre>conf/web-site.conf</pre>
-### 编译与运行
+
+#### 编译与运行
+<pre> activator run </pre>
 然后去 http://localhost:9000 查看正在运行的服务器。
 
 如果运行有这个界面提示，点击Apply this script now 初始化数据表
  ![](http://upload-images.jianshu.io/upload_images/522641-65dbf16c874c1289.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-#### 编译与运行
-<pre> activator run </pre>
 
 #### 项目默认使用H2数据库
 这是Play 内嵌的一个数据库 H2
