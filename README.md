@@ -50,6 +50,9 @@ db.default.pass="a strong password" </pre>
 ![](http://upload-images.jianshu.io/upload_images/522641-1ffd0eafacfc4c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-spark-submit-ui: https://github.com/kingekinge/spark-submit-ui
-playframework:https://www.playframework.com
-spark:http://spark.apache.org
+spark-submit-ui: https://github.com/kingekinge/spark-submit-ui  
+playframework:https://www.playframework.com  
+spark:http://spark.apache.org 
+IntelliJ IDE支持Maven的和为Scala提供了插件开发。  
+IntelliJ download: https://www.jetbrains.com/idea/  
+IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347  
