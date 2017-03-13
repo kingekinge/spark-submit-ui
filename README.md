@@ -42,6 +42,8 @@ db.default.pass="a strong password" </pre>
 如果你的提交参数或配置导致异常，可以在提交时查看
 ![](http://upload-images.jianshu.io/upload_images/522641-1ffd0eafacfc4c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+首页 
+![](http://upload-images.jianshu.io/upload_images/522641-9d546482a2de1706.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 spark-submit-ui: https://github.com/kingekinge/spark-submit-ui 
 playframework:https://www.playframework.com
