@@ -140,7 +140,7 @@ object User {
          email = {email}
         """).on(
         'email -> email,
-        'password -> password).executeUpdate()
+        'password -> MD5Utils.encode2hex(password)).executeUpdate()
     }
   }
 

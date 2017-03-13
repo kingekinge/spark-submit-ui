@@ -223,7 +223,7 @@ class TaskDataProvider @Inject()(config: Config,taskDao: TaskDao)extends TaskPro
           }
           case m if m.equals("standalone") => {
             WS.url("http://"+config.getString("spark.master.host")+"/app/kill/").post(Map("id" -> Seq(appId),"terminate"->Seq("true")))
-            taskDao.rmYarnTaskInfo(appId)
+            taskDao.rmTaskInfo(appId)
           }
         }
     )

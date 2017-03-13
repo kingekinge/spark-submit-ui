@@ -206,7 +206,7 @@ object Authentication  extends Controller with  Secured{
       user => {
         val email: String = request.session.get("findpwd").getOrElse(null)
         User.updatePWD(email,user._2)
-        Ok(views.html.nothing(email+"Change the password successfully"))
+        Ok(views.html.nothing(email+" Change the password successfully"))
       }
     )
   }
