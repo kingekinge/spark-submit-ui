@@ -50,10 +50,10 @@ db.default.pass="a strong password" </pre>
 ![](http://upload-images.jianshu.io/upload_images/522641-1ffd0eafacfc4c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #Link:
-IntelliJ IDE支持Maven的和为Scala提供了插件开发。  
-IntelliJ download: https://www.jetbrains.com/idea/  
-IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347  
-playframework:https://www.playframework.com  
+IntelliJ IDE支持Maven的和为Scala提供了插件开发.  
+IntelliJ download: https://www.jetbrains.com/idea/   
+IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347   
+playframework:https://www.playframework.com  
 sbt:http://www.scala-sbt.org  
 spark:http://spark.apache.org  
 
