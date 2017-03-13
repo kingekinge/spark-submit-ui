@@ -4,6 +4,13 @@
 
 >你需要安装SBT和Java以及PlayFramowrk。项目基于2.2.x 版本开发，需要PlayFramowrk 2.2或更高版本。
 
+#### 测试环境
+* JDK8
+* Center OS  6.5
+* Spark 1.5.2
+* Hadoop 2.6.0
+* Scala 2.11
+
 #### 主要功能
 * hadoop metrics 数据监控
 * spark 集群状态信息展示
