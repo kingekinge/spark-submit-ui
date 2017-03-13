@@ -40,7 +40,7 @@ db.default.pass="a strong password" </pre>
 ![](http://upload-images.jianshu.io/upload_images/522641-8bc5a35a895f944e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 如果你的提交参数或配置导致异常，可以在提交时查看
-![](http://upload-images.jianshu.io/upload_images/522641-130e5fd72e63e7bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![QQ20170313-171709@2x.png](http://upload-images.jianshu.io/upload_images/522641-f06c579d508dc53d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 <b>更详细的日志信息可以在logs下的文件查看</b>
 
