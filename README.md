@@ -40,9 +40,7 @@ db.default.pass="a strong password" </pre>
 ![](http://upload-images.jianshu.io/upload_images/522641-8bc5a35a895f944e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 如果你的提交参数或配置导致异常，可以在提交时查看
-![QQ20170313-171709@2x.png](http://7xsvi4.com1.z0.glb.clouddn.com/QQ20170313-171709@2x.png)
-
-<b>更详细的日志信息可以在logs下的文件查看</b>
+![](http://upload-images.jianshu.io/upload_images/522641-1ffd0eafacfc4c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 spark-submit-ui: https://github.com/kingekinge/spark-submit-ui 
