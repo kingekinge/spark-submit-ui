@@ -1,0 +1,32 @@
+@(form: Form[(String,String)])
+
+@plain("Set the password"){
+<h2 style="margin-top:10%" class="form-heading"><font color="#FBFBFB">Set the password</font></h2>
+<div class="app-cam">
+
+    @if(form.hasErrors){
+    @form.globalError.map { error =>
+    <p class="error">
+        <font color="red">@error.message</font>
+    </p>
+    }
+    }
+
+    @helper.form(routes.Authentication.updatepwd){
+    <input type="password" name="password"  placeholder="Please enter the password" onfocus="this.value = '' onblur="if (this.value == '') {this.value = 'Please enter the password';}">
+    <input type="password" name="repassword"  placeholder="Please enter the password again" onfocus="this.value = '' onblur="if (this.value == '') {this.value = 'Please enter the password again';}">
+
+
+    <div class="submit">
+        <input type="submit" id="loginbutton" value="Set the password">
+    </div>
+
+    <ul class="new">
+        <li class="new_left">
+            <p class="sign"><a href="/login"><font color="#FBFBFB"> Login</font></a></p>
+        </li>
+        <div class="clearfix"></div>
+    </ul>
+
+    }
+}

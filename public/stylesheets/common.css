@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+/* 
+ *  @Description: common css
+ *  @author: haibao
+ *  @Update: 2014-10-23
+ */
+body{font:.85em/1.4 "微软雅黑","Microsoft Yahei",'Arial','san-serif';color:#666;margin:0;padding:0}
+img{max-width:100%;height:auto;width:auto9;-ms-interpolation-mode:bicubic;vertical-align:middle}
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0)}
+input{border:0 none;margin: 0}
+a:focus,a:active,button::-moz-focus-inner,input[type="reset"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,select::-moz-focus-inner,input[type="file"] > input[type="button"]::-moz-focus-inner {border: 0;outline : 0;}
+input[type=radio],input[type=checkbox]{margin-right:5px}
+ul,p{padding:0;margin:0}
+h1,h2,h3,h4,h5,h6{margin:0;font-weight:100}
+ul,li{list-style:none}
+a{color:#666;cursor:pointer}
+a,a:hover{text-decoration:none}
+a:focus{outline:none}
+/*------------------- 华丽分割线 -----------------------*/
+
+header{width:92%;margin:0 auto;background:-webkit-gradient(linear,left bottom,right top,color-stop(0%,#020031),color-stop(100%,#6d3353));background:linear-gradient(45deg, #020031 0px, #6d3353 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);box-shadow:0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;-webkit-box-shadow:0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;text-align:center;padding:2% 4%;letter-spacing:2px;color:#fff;font-size:1em;text-shadow:0 0 2px #999;}
+header a{color: #ddd;}
+header sup{font-size:.6em;}
+.demo{width:94%;margin:5px auto;text-align:left;overflow:hidden;}
+.w50{float:left;width:25%;}
+.demo a{margin:4px 2px;display:inline-block;background-color:#f4f4f4;border:1px solid #ddd;padding:4px 6px;font-size:.85em;}
+.demo a:hover{background-color:#333;color:#fff;}
+.demo h3{margin:10px 0;color:#6d3353;font-size:1em;}
+.demo h3 a{background-color:transparent;border:0 none;padding:0;}
+.desc{width:100%;overflow:auto;margin:10px auto;background-color:#fafafa;border-left:4px solid #6d3353;float: left;}
+.desc h3{width:96%;margin:0 auto;padding:15px 0;}
+pre{width:94%;margin:0 auto;font-size:1.1em;}
+
+/*------------------- 华丽分割线 -----------------------*/
+.mr10{margin-right:10px;}
+.fl{float:left;}
+.list{padding:20px 0;}
+.list li{width:80%;margin:10px auto auto;overflow:hidden;}
+.list li strong{width:20%;float:left;display:inline-block;margin-right:10px;text-align:right;}
+.list .fl{width:72%;}
+.ipt{width:100%;text-indent:5px;border:1px solid #ccc;padding:5px 0;box-shadow:0 0 3px #ddd inset;-webkit-box-shadow:0 0 3px #ddd inset;}
+.ipt:focus{border-color:#66afe9;box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px rgba(102, 175, 233, 0.6);-webkit-box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px rgba(102, 175, 233, 0.6);}
+.submitBtn{width:100%;height:32px;line-height:30px;cursor:pointer;margin-top:10px;display:inline-block;text-align:center;background-color:#428bca;color:#fff;padding:0;}
+.submitBtn:hover,.submitBtn:disabled{opacity: .8;-webkit-opacity: .8;}
+
+/*关闭按钮*/
+#HCloseBtn{width:24px;height:24px;line-height:24px;display:inline-block;cursor:pointer;background-color:#ccc;color:#fff;font-size:1.4em;text-align:center;position:absolute;top:8px;right:8px;}
+#HCloseBtn span{width:24px;height:24px;display:inline-block;}
+
+/*头部*/
+#HTitle{padding:10px 45px 10px 12px;border-bottom:1px solid #ddd;background-color:#f2f2f2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}

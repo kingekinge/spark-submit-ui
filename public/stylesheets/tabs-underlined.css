@@ -1,0 +1,77 @@
+.tabs-underline{
+    max-width: 440px;
+    box-sizing: border-box;
+    border: 1px solid #dddddd;
+    background-color: #fff;
+
+    font: bold 13px sans-serif;
+
+    margin: 30px auto;
+    text-align: center;
+    padding: 30px;
+}
+
+/* The tabs */
+
+.tabs-underline ul{
+    list-style: none;
+    text-align: left;
+
+    margin: 0;
+    padding: 0;
+}
+
+.tabs-underline ul li{
+    display: inline-block;
+}
+
+.tabs-underline ul li a{
+    display: block;
+    text-decoration: none;
+    color:  #7f888d;
+    font-size: 14px;
+
+    margin: 0 20px 15px 0;
+    padding-bottom: 5px;
+}
+
+.tabs-underline ul li a.tab-active {
+    color: #656a6d;
+    border-bottom: 2px solid #629ebd;
+}
+
+/* The content */
+
+.tabs-underline .tabs-content-placeholder{
+    overflow: hidden;
+    font-weight: normal;
+}
+
+.tabs-underline .tabs-content-placeholder div{
+    display: none;
+}
+
+.tabs-underline .tabs-content-placeholder div.tab-content-active{
+    display: block;
+}
+
+.tabs-underline .tabs-content-placeholder div p{
+    color: #565a5c;
+    line-height: 1.5;
+    text-align: left;
+
+    margin: 5px 0 20px;
+}
+
+.tabs-underline .tabs-content-placeholder div img{
+    max-width: 100%;
+}
+
+@media (max-width: 500px) {
+
+    .tabs-underline ul li a{
+        font-size: 12px;
+    }
+
+}
+

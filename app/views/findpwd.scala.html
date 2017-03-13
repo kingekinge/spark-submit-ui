@@ -1,0 +1,41 @@
+@(form: Form[(String, String)])
+
+
+@plain("Password back") {
+    <h2 style="margin-top:10%" class="form-heading"><font color="#FBFBFB" >Password back</font></h2>
+    <div class="app-cam">
+
+        <script type="text/javascript">
+                function refresh(obj){
+                    document.getElementById(obj.id).src="/captcha";
+                }
+        </script>
+
+        @helper.form(routes.Authentication.resetpwd) {
+            <input type="text" name="email" id="email" class="text" value="@form("email").value" placeholder="Registered mail" onblur="if (this.value == '') {this.value = 'Registered mail';}">
+            @if(form.hasErrors && !form.error("email").isEmpty) {
+                <p class="error"><font color="red">@form.error("email").get.message</font></p>
+            }
+
+            <div>
+                <input type="text" name="captcha" class="text" placeholder="Verification code" onblur="if (this.value == '') {this.value = 'Verification code';}">
+                <img src="/captcha" id="captcha" onclick="refresh(this)"></div >
+
+
+            <div class="submit">
+                @if(form.hasErrors && !form.error("captcha").isEmpty) {
+                    <p class="error"><font color="red">@form.error("captcha").get.message</font></p>
+                }
+                <input type="submit" id="loginbutton" value="Send a reset password email">
+            </div>
+            <ul class="new">
+                <li class="new_left">
+                    <p class="sign"><a href="/login"><font color="#FBFBFB"> go to login</font></a></p>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+        }
+    </div>
+
+
+}

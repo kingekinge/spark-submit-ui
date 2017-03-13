@@ -1,0 +1,427 @@
+@(title: String)(menu: Html)(content: Html)
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>@title</title>
+
+            <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/style.css")" type="text/css"/>
+        <link href="@routes.Assets.at("stylesheets/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+            <!-- Custom CSS -->
+        <link href="@routes.Assets.at("stylesheets/xenon-core.css")" rel="stylesheet" type="text/css" />
+            <!-- Graph CSS -->
+        <link href="@routes.Assets.at("stylesheets/xenon-forms.css")" rel="stylesheet" type="text/css" />
+        <link href="@routes.Assets.at("stylesheets/font-awesome.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/xenon-components.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/xenon-skins.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/meteocons.css")" rel="stylesheet">
+        <link href="@routes.Assets.at("stylesheets/dropzone.css")" rel="stylesheet">
+        <script src="@routes.Assets.at("javascripts/jquery-1.11.1.min.js")"></script>
+
+            <!-- Nav CSS -->
+        <link href="@routes.Assets.at("stylesheets/custom.css")" rel="stylesheet">
+            <!-- Graph JavaScript -->
+        <script src="@routes.Assets.at("javascripts/d3.v3.js")"></script>
+        <script src="@routes.Assets.at("javascripts/rickshaw.js")"></script>
+        <script src="@routes.Assets.at("javascripts/highcharts.js")"></script>
+        <script src="@routes.Assets.at("javascripts/highchartThemes.js")"></script>
+
+
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/vis.min.css")" type="text/css"/>
+        <link rel="stylesheet" href="@routes.Assets.at("stylesheets/timeline-view.css")" type="text/css"/>
+        <script src="@routes.Assets.at("javascripts/echarts.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/dropzone.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/TweenMax.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/resizeable.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/joinable.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/xenon-api.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/xenon-toggles.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery-jvectormap-1.2.2.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/jquery-jvectormap-world-mill-en.js")" type="text/javascript"></script>
+
+        <script src="@routes.Assets.at("javascripts/xenon-widgets.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/xenon-custom.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap-tooltip.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/push.js")"></script>
+
+
+
+        <script>
+           showmessage();
+        </script>
+
+        <!--<script src="@routes.Assets.at("javascripts/dark-unica.js")"></script>-->
+
+
+    </head>
+    <body class="page-body">
+
+        <div class="page-loading-overlay">
+            <div class="loader-2"></div>
+        </div>
+
+        <div class="settings-pane">
+
+            <a href="#" data-toggle="settings-pane" data-animate="true">
+                    &times;
+            </a>
+
+            <div class="settings-pane-inner">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <div class="user-info">
+
+                            <div class="user-image">
+                                <a href="#">
+                                    <img src="@routes.Assets.at("images/user-2.png")" class="img-responsive img-circle" />
+                                </a>
+                            </div>
+
+                            <div class="user-details">
+
+                                <h3>
+                                    <a id="userprofile" href="#">John Smith</a>
+
+                                        <!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
+                                    <span class="user-status is-online"></span>
+                                </h3>
+
+                                <p class="user-title">Web Developer</p>
+
+                           @*     <div class="user-links">
+                                    <a href="#" class="btn btn-primary">Edit Profile</a>
+                                    <a href="#" class="btn btn-success">Upgrade</a>
+                                </div>*@
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    @*<div class="col-md-8 link-blocks-env">
+
+                        <div class="links-block left-sep">
+                            <h4>
+                                <span>Notifications</span>
+                            </h4>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk1" />
+                                    <label for="sp-chk1">Messages</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk2" />
+                                    <label for="sp-chk2">Events</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk3" />
+                                    <label for="sp-chk3">Updates</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="cbr cbr-primary" checked="checked" id="sp-chk4" />
+                                    <label for="sp-chk4">Server Uptime</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="links-block left-sep">
+                            <h4>
+                                <a href="#">
+                                    <span>Help Desk</span>
+                                </a>
+                            </h4>
+
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-angle-right"></i>
+                                        Support Center
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-angle-right"></i>
+                                        Submit a Ticket
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-angle-right"></i>
+                                        Domains Protocol
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-angle-right"></i>
+                                        Terms of Service
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>*@
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="page-container "><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+            <!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
+            <!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
+            <!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
+            @menu
+
+            <div class="main-content">
+
+                    <!-- User Info, Notifications and Menu Bar -->
+                <nav class="navbar user-info-navbar" role="navigation">
+
+                        <!-- Left links for user info navbar -->
+                    <ul class="user-info-menu left-links list-inline list-unstyled">
+
+                        <li class="hidden-sm hidden-xs">
+                            <a href="#" data-toggle="sidebar">
+                                <i class="fa-bars"></i>
+                            </a>
+                        </li>
+<!-- message面板 -->
+                        @*<li class="dropdown hover-line">
+                            <a href="#" data-toggle="dropdown">
+                                <i class="fa-envelope-o"></i>
+                                <span class="badge badge-green">15</span>
+                            </a>
+
+                            <ul class="dropdown-menu messages">
+                                <li>
+
+                                    <ul class="dropdown-menu-list list-unstyled ps-scrollbar">
+
+                                        <li class="active"><!-- "active" class means message is unread -->
+                                            <a href="#">
+                                                <span class="line">
+                                                    <strong>Luc Chartier</strong>
+                                                    <span class="light small">- yesterday</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          This ain’t our first item, it is the best of the rest.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li class="active">
+                                            <a href="#">
+                                                <span class="line">
+                                                    <strong>Salma Nyberg</strong>
+                                                    <span class="light small">- 2 days ago</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          Oh he decisively impression attachment friendship so if everything.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <span class="line">
+                          Hayden Cartwright
+                                                    <span class="light small">- a week ago</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          Whose her enjoy chief new young. Felicity if ye required likewise so doubtful.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <span class="line">
+                          Sandra Eberhardt
+                                                    <span class="light small">- 16 days ago</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          On so attention necessary at by provision otherwise existence direction.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                            <!-- Repeated -->
+
+                                        <li class="active"><!-- "active" class means message is unread -->
+                                            <a href="#">
+                                                <span class="line">
+                                                    <strong>Luc Chartier</strong>
+                                                    <span class="light small">- yesterday</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          This ain’t our first item, it is the best of the rest.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li class="active">
+                                            <a href="#">
+                                                <span class="line">
+                                                    <strong>Salma Nyberg</strong>
+                                                    <span class="light small">- 2 days ago</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          Oh he decisively impression attachment friendship so if everything.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <span class="line">
+                          Hayden Cartwright
+                                                    <span class="light small">- a week ago</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          Whose her enjoy chief new young. Felicity if ye required likewise so doubtful.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="#">
+                                                <span class="line">
+                          Sandra Eberhardt
+                                                    <span class="light small">- 16 days ago</span>
+                                                </span>
+
+                                                <span class="line desc small">
+                          On so attention necessary at by provision otherwise existence direction.
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+
+                                <li class="external">
+                                    <a href="#">
+                                        <span>All Messages</span>
+                                        <i class="fa-link-ext"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>*@
+
+
+
+                        <li class="dropdown hover-line">
+                            <a href="#" data-toggle="dropdown">
+                                <i class="fa-bell-o"></i>
+                                <span id="count" class="badge badge-purple"></span>
+                            </a>
+
+                            <ul class="dropdown-menu notifications">
+
+                                <li class="top">
+                                    <p class="small" id="small-title">
+                                        <a href="/readall" class="pull-right">mark all read</a>
+                                       you have <strong id="mes"></strong> new message
+                                    </p>
+                                </li>
+
+                                <li>
+                                    <ul id="msglist" class="dropdown-menu-list list-unstyled ps-scrollbar">
+
+
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+
+
+
+
+
+
+                        <!-- Right links for user info navbar -->
+                    <ul class="user-info-menu right-links list-inline list-unstyled">
+
+
+                        <li>
+                            <a href="@routes.TaskManager.tasklist">
+                                <i class="fa-dot-circle-o"></i>
+                                Task Management
+                            </a>
+                        </li>
+
+
+
+                        <li class="dropdown user-profile">
+                            <a href="#" data-toggle="dropdown">
+                                <img src="@routes.Assets.at("images/user-4.png")" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                                <span id="whoiam">
+                  NEP User
+                                    <i class="fa-angle-down"></i>
+                                </span>
+                            </a>
+
+                            <ul class="dropdown-menu user-profile-menu list-unstyled">
+                                <li class="last">
+                                    <a href="@routes.Authentication.logout">
+                                        <i class="fa-lock"></i>
+                                        logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                @content
+            </div>
+        </div>
+
+        <script>
+                $(document).ready(function(){
+                    $.ajax({
+                        type:"GET",
+                        url:"/whoiam",
+                        dataType:"json",
+                        success:function(data){
+                            console.log(data);
+                            var myobj=eval(data);
+                            var usernow=myobj.user;
+                            var userShortName = myobj.shortName;
+                            $('#whoiam').html(userShortName + '<i class="fa-angle-down"></i>');
+                            $('#userprofile').html(usernow);
+                        }
+                    });
+                });
+        </script>
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,43 @@
+@(form: Form[(String, String)])(implicit flash: Flash)
+
+    @plain("Neptune Login") {
+        <h2 style="margin-top:10%" class="form-heading"><font color="#FBFBFB">Welcome to Spark-submit-ui</font></h2>
+        <div class="app-cam">
+
+        @helper.form(routes.Authentication.authenticate) {
+            @form.globalError.map { error =>
+                <p class="error">
+                    <font color="red">Wrong username or password</font>
+                </p>
+            }
+
+            @if(form.hasErrors && !form.error("email").isEmpty) {
+                <p class="error"><font color="red">@form.error("email").get.message</font></p>
+            }
+
+            @flash.get("success").map { message =>
+                <p class="success">
+                    <font color="red"> @message</font>
+                </p>
+            }
+
+
+            <input type="text" name="email" class="text" value="@form("email").value" placeholder="E-mail Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail Address';}">
+            <input type="password" name="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+            <div class="submit">
+                <input type="submit" id="loginbutton" value="Login">
+            </div>
+            <ul class="new">
+                <li class="new_left">
+
+                    <p><a href="/findpwd"><font color="#FBFBFB"> Forgot password ?</font></a></p>
+                </li>
+                <li class="new_right">
+                    <p class="sign"><a href="/registration"><font color="#FBFBFB">Register</font></a></p>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+        }
+        </div>
+
+}

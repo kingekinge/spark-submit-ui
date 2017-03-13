@@ -1,0 +1,103 @@
+
+.tabs-colorful-icons{
+    font: bold 13px sans-serif;
+
+    margin: 30px auto 30px;
+    max-width: 480px;
+    text-align: center;
+}
+
+/* The tabs */
+
+.tabs-colorful-icons ul{
+    list-style: none;
+    text-align: left;
+
+    margin: 0;
+    padding: 0;
+}
+
+.tabs-colorful-icons ul li{
+    display: inline-block;
+    margin-bottom: -1px;
+}
+
+.tabs-colorful-icons ul li a{
+    display: block;
+    text-decoration: none;
+
+    font-size: 16px;
+
+    border: 1px solid transparent;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+
+    padding: 15px 18px 10px;
+}
+
+.tabs-colorful-icons ul li i{
+    padding-right: 8px;
+}
+
+.tabs-colorful-icons .first-tab{
+    color:  #7494b7;
+}
+
+.tabs-colorful-icons .second-tab{
+    color:  #9274b7;
+}
+
+.tabs-colorful-icons .third-tab{
+    color:  #dbb43d;
+}
+
+.tabs-colorful-icons .tab-active {
+    border-color: #dddddd;
+    background-color: #ffffff;
+}
+
+/* The content */
+
+.tabs-colorful-icons .tabs-content-placeholder{
+    overflow: hidden;
+    border: 1px solid #dddddd;
+    font-weight: normal;
+    background-color: #fff;
+
+    padding: 25px 32px 30px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div{
+    display: none;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div.tab-content-active{
+    display: block;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div p{
+    color: #565a5c;
+    line-height: 1.45;
+    text-align: left;
+
+    margin: 5px 0 20px;
+}
+
+.tabs-colorful-icons .tabs-content-placeholder div img{
+    max-width: 100%;
+}
+
+@media (max-width: 500px) {
+
+    .tabs-colorful-icons ul li a{
+        font-size: 13px;
+        padding: 12px 15px;
+    }
+
+    .tabs-colorful-icons ul li i{
+        display: none;
+    }
+
+}
