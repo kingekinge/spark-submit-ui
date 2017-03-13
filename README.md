@@ -51,10 +51,11 @@ db.default.pass="a strong password" </pre>
 
 #Link:
 IntelliJ IDE支持Maven的和为Scala提供了插件开发.  
-IntelliJ download: https://www.jetbrains.com/idea/   
-IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347   
-playframework:https://www.playframework.com  
+IntelliJ download: https://www.jetbrains.com/idea/  
+IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347  
+playframework:https://www.playframework.com  
 sbt:http://www.scala-sbt.org  
 spark:http://spark.apache.org  
+
 
 
