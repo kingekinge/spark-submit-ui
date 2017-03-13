@@ -4,7 +4,7 @@
 你需要安装SBT和Java以及PlayFramowrk。这个项目基于2.2.x 版本开发，需要PlayFramowrk 2.2或更高版本。
 
 #### 并下载并安装Play Framework 编译环境
- [Installing Play](https://www.playframework.com/documentation/2.5.x/Installing")
+ [Installing Play](https://www.playframework.com")
 
 
 #### 修改配置文件，将集群地址替换为你的
