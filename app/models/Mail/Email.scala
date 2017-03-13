@@ -90,7 +90,6 @@ object Email {
       val time: String = dateFormat.format(new Date(System.currentTimeMillis()))
       val email=user.email
       val username=user.name
-      val adminemail=config.getString("email.default.admin")
       val hostname="http://"+config.getString("email.default.host")
 
       "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n   " +

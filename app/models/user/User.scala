@@ -49,7 +49,7 @@ object User {
          email = {email} and password = {password}
         """).on(
           'email -> email,
-          'password -> password).as(User.simple.singleOpt)
+          'password -> MD5Utils.encode2hex(password)).as(User.simple.singleOpt)
     }
   }
     }
@@ -158,7 +158,7 @@ object User {
         """).on(
         'email -> user.email,
         'name -> user.name,
-        'password -> user.password,
+        'password -> MD5Utils.encode2hex(user.password),
         'status->user.status
         ).executeUpdate()
       user

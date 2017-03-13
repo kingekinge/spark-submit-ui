@@ -119,7 +119,7 @@ object Authentication  extends Controller with  Secured{
 
   def mail(user:String) = Action.async {
     val future: Future[String] = scala.concurrent.Future { sendEmail(user) }
-    future.map(i => Ok("Got result: " + i))
+    future.map(i => Ok(views.html.registed(Some("Got result: " + i))))
   }
 
 
@@ -128,7 +128,7 @@ object Authentication  extends Controller with  Secured{
       case  e : EmailExecption =>  BadRequest(views.html.registed(e.unapply(e)))
       case  v : VerifyException => BadRequest(views.html.registed(v.unapply(v)))
       case  f : Failure => BadRequest(views.html.registed(f.unapply(f)))
-      case  s : Success => Ok(email+" Registered successfully ~ ")
+      case  s : Success => Ok(views.html.registed(Some(email+" Registered successfully ~ ")))
     }
   }
 
@@ -206,7 +206,7 @@ object Authentication  extends Controller with  Secured{
       user => {
         val email: String = request.session.get("findpwd").getOrElse(null)
         User.updatePWD(email,user._2)
-        Ok(email+"Change the password successfully")
+        Ok(views.html.nothing(email+"Change the password successfully"))
       }
     )
   }

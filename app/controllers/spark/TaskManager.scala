@@ -12,7 +12,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.language.postfixOps
 
 /**
-  * Created by liangkai on 16/8/18.
+  * Created by kinge on 16/8/18.
   * Management related tasks run time
   */
 class TaskManager @Inject() (config: Config,taskProvider:TaskProvider[AppDataObject],taskDao: TaskDao,execute: Execute) extends Controller with Secured{
@@ -55,23 +55,31 @@ class TaskManager @Inject() (config: Config,taskProvider:TaskProvider[AppDataObj
   }
 
   def killTask(appId:String): Unit ={
-    Runtime.getRuntime.exec(s"yarn application -kill $appId")
+    //curl -v -X PUT -H "Content-Type: application/json" -d '{"state": "KILLED"}' 'http://localhost:8088/application_1489377540859_0013/state'
+    WS.url(s"http://${config.getString("hadoop.yarn.host")}/ws/v1/cluster/apps/${appId}/state").withHeaders("Content-Type"->"application/json").put(Json.obj("state"->"KILLED")) map{
+      response => response.status match {
+        case  200 => Some{
+          Logger.debug(s"post to kill ${appId} success" )
+        }
+        case _ => None
+      }
+    }
   }
+
 
 
   def kill(appId:String) =IsAuthenticated{
     username => implicit request =>
-
-      if(appId.startsWith("application")){Map("id"->Seq(appId),"terminate"->Seq("true"))
+      if(appId.startsWith("application")){
         killTask(appId)
       }else{
         val spark_master = config.getString("spark.master.host")
            WS.url("http://"+spark_master+"/app/kill/").withQueryString(("terminate","true")).withQueryString(("id",appId)).post("content") map{
           response => response.status match {
             case  200 => Some{
-
+               Logger.debug(s"post to kill ${appId} success" )
             }
-            case _ => None
+            case _ =>  None
           }
         }
       }

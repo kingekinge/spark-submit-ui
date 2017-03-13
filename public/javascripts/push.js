@@ -49,7 +49,7 @@
                                          var datamid = eval(data[p]);
                                          for (var i = 0; i < datamid.length; i++) {
                                              $count++;
-                                             head +="<li class=\"notification-warning\"><a  href=\"/read?appId="+datamid[i].id+"\"><i class=\"fa-envelope-o\"></i><span class=\"line\">"+"任务运行结束,当前状态 "+datamid[i].state+"</span><span class=\"line small time\">"+"ID "+datamid[i].id+"</span></a></li>"
+                                             head +="<li class=\"notification-warning\"><a  href=\"/read?appId="+datamid[i].id+"\"><i class=\"fa-envelope-o\"></i><span class=\"line\">"+"End of the task to run, the current state "+datamid[i].state+"</span><span class=\"line small time\">"+"ID "+datamid[i].id+"</span></a></li>"
 
                                          };
                                      };

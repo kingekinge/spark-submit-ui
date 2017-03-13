@@ -62,6 +62,8 @@ class HadoopMetricsProvider extends MetricsProvider{
              val (receivedBytes,sentBytes) = getRpcInfo(response.json)
              val (capacityUsed,capacityRemaining,capacityUsedNonDFS)=getDFSInfo(response.json)
              val  (memNonHeapUsedM,memHeapUsedM)=getMENInfo(response.json)
+
+
               MetricsData.updateMetrics(MetricsData(
                 receivedBytes,
                 sentBytes,

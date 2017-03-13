@@ -30,7 +30,7 @@ class Execute {
 
   def makeSystem ={
     _actorSystem = ActorSystem("jobSystem")
-    _statusLister=_actorSystem.actorOf(StatusListener.props(_config,_dao,_task_dao),"StatLinster")
+    _statusLister=_actorSystem.actorOf(StatusListener.props(_config,_dao,_task_dao),"StatusLinster")
     _jobMange=_actorSystem.actorOf((JobManagerActor.props(_config,_dao,_task_dao,_statusLister)), "JobManger")
     _actorSystem.registerOnTermination(System.exit(0))
   }

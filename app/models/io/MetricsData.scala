@@ -50,6 +50,8 @@ object MetricsData {
   }
 
   def updateMetrics(metricsData: MetricsData)={
+      println(metricsData.toString)
+
     play.api.db.DB.withConnection { implicit connection =>
       SQL(
         """
