@@ -28,7 +28,7 @@
 
 #### 项目默认使用H2数据库
 这是Play 内嵌的一个数据库 H2
-[H2数据库]("http://www.h2database.com/html/main.html") 
+H2官方介绍 http://www.h2database.com/html/main.html 
 
 如果想要换成Mysql或者是其他的存储可以参考指引
 <b>MySQL 数据库引擎连接属性
