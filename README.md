@@ -1,6 +1,6 @@
 
 # spark-submit-ui
->这是一个基于playframwork开发，web管理spark应用的程序
+>这是一个基于playframwork开发，web管理的spark应用程序
 
 >你需要安装SBT和Java以及PlayFramowrk。项目基于2.2.x 版本开发，需要PlayFramowrk 2.2或更高版本。
 
@@ -49,10 +49,12 @@ db.default.pass="a strong password" </pre>
 如果你的提交参数或配置导致异常，可以在提交时查看相关的错误输出
 ![](http://upload-images.jianshu.io/upload_images/522641-1ffd0eafacfc4c1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-
-spark-submit-ui: https://github.com/kingekinge/spark-submit-ui  
-playframework:https://www.playframework.com  
-spark:http://spark.apache.org  
+#Link:
 IntelliJ IDE支持Maven的和为Scala提供了插件开发。  
 IntelliJ download: https://www.jetbrains.com/idea/  
 IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347  
+playframework:https://www.playframework.com  
+sbt:http://www.scala-sbt.org  
+spark:http://spark.apache.org  
+
+
