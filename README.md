@@ -2,7 +2,7 @@
 # spark-submit-ui
 >这是一个基于playframwork开发，web管理spark应用的程序
 
->你需要安装SBT和Java以及PlayFramowrk。这个项目基于2.2.x 版>本开发，需要PlayFramowrk 2.2或更高版本。
+>你需要安装SBT和Java以及PlayFramowrk。项目基于2.2.x 版本开发，需要PlayFramowrk 2.2或更高版本。
 
 #### 主要功能
 * hadoop metrics 数据监控
@@ -52,7 +52,7 @@ db.default.pass="a strong password" </pre>
 
 spark-submit-ui: https://github.com/kingekinge/spark-submit-ui  
 playframework:https://www.playframework.com  
-spark:http://spark.apache.org 
-IntelliJ IDE支持Maven的和为Scala提供了插件开发。  
+spark:http://spark.apache.org  
+IntelliJ IDE支持Maven的和为Scala提供了插件开发。  
 IntelliJ download: https://www.jetbrains.com/idea/  
 IntelliJ Scala Plugin: http://plugins.jetbrains.com/plugin/?id=1347  
