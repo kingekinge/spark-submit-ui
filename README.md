@@ -54,7 +54,7 @@ db.default.pass="a strong password" </pre>
 ![](http://upload-images.jianshu.io/upload_images/522641-8bc5a35a895f944e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
 
 通过界面管理，kill或者rerun任务
-![qq](http://upload-images.jianshu.io/upload_images/522641-46907f6c8f3b2b0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
+![](https://github.com/kingekinge/spark-submit-ui/blob/master/public/images/20170315-143639%403x.png) 
 
 
 
