@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 # Ignore Play! working directory #
 bin/
 .eclipse
 /lib/
 /logs/
-=======
 # Created by .ignore support plugin (hsz.mobi)
 ### PlayFramework template
 # Ignore Play! working directory #
@@ -132,7 +130,6 @@ fabric.properties
 bin/
 .eclipse
 /lib/
->>>>>>> dev
 /modules
 /project/target
 /target
@@ -142,8 +139,6 @@ server.pid
 *.eml
 /dist/
 .cache
-<<<<<<< HEAD
-=======
 ### Scala template
 *.class
 *.log
@@ -166,4 +161,4 @@ project/plugins/project/
 
 #/conf/web-site.conf
 project/project/
->>>>>>> dev
+/db/
