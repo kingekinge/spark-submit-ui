@@ -56,7 +56,7 @@ db.default.pass="a strong password" </pre>
 
 如果你的提交参数或配置导致异常，可以在提交时查看相关的错误输出
 
-![](http://upload-images.jianshu.io/upload_images/522641-46907f6c8f3b2b0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
+![](https://github.com/kingekinge/spark-submit-ui/blob/master/public/images/522641-46907f6c8f3b2b0b.png) 
 
 
 
