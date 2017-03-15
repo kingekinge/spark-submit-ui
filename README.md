@@ -53,6 +53,9 @@ db.default.pass="a strong password" </pre>
 通过界面管理，kill或者rerun任务
 ![](http://upload-images.jianshu.io/upload_images/522641-8bc5a35a895f944e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
 
+通过界面管理，kill或者rerun任务
+![](http://upload-images.jianshu.io/upload_images/522641-8bc5a35a895f944e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) 
+
 
 
 #Link:
