@@ -4,6 +4,7 @@ import com.google.inject.Inject
 import models.TaskDataProvider.{AppDataObject, TaskData, YarnTaskInfoList}
 import models.utils.Config
 import play.api.Logger
+import play.api.libs.json.Json
 import play.api.libs.ws.WS
 import play.libs.Akka
 
@@ -218,7 +219,7 @@ class TaskDataProvider @Inject()(config: Config,taskDao: TaskDao)extends TaskPro
       data=>
         data._1 match {
           case m if m.equals("yarn") => {
-            Runtime.getRuntime.exec(s"app/models/shell/kill_job.sh $appId")
+            WS.url(s"http://${config.getString("hadoop.yarn.host")}/ws/v1/cluster/apps/${appId}/state").withHeaders("Content-Type"->"application/json").put(Json.obj("state"->"KILLED"))
             taskDao.rmYarnTaskInfo(appId)
           }
           case m if m.equals("standalone") => {
