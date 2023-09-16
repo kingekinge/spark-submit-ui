@@ -1,6 +1,6 @@
 name := "spark-submit-ui"
 
-version := "1.0-SNAPSHOT"
+version := "v1.01
 
 scalaVersion := "2.11.8"
 
@@ -17,7 +17,6 @@ libraryDependencies ++= Seq(
 
 play.Project.playScalaSettings
 
-//resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 resolvers ++= Seq(
   "Apache Repository" at "https://repository.apache.org/content/repositories/releases/",
   "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases",
